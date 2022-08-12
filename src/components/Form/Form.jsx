@@ -3,14 +3,10 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { FormName, InputName, Label, Button } from './Form.styled';
 import { useAddContactMutation, useGetContactsQuery } from 'redux/operations';
 import { LoaderButton } from 'components/Loader/Loader';
-// import { useSelector } from 'react-redux';
-// import { fetchAddContact } from 'redux/operations';
 
 export const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  // const dispatch = useDispatch();
-  // const contacts = useSelector(state => state.contacts.items);
   const [addContacts, { isLoading }] = useAddContactMutation();
   const { data } = useGetContactsQuery();
 
@@ -44,7 +40,6 @@ export const Form = () => {
       });
 
       if (!chekedName & !chekedTel) {
-        // dispatch(fetchAddContact(nameItem));
         addContacts(nameItem);
         Notify.success(`${name} added in contacts`);
       }

@@ -5,19 +5,9 @@ import { ContactsList, ContactsItem } from './Contacts.styled';
 import ContactName from 'components/ContactItem/ContaciItem';
 import { useGetContactsQuery } from 'redux/operations';
 import { Loader } from 'components/Loader/Loader';
-// import { useDispatch } from 'react-redux';
-// import { useEffect } from 'react';
-// import { fetchGetContact } from 'redux/operations';
 
 const Contacts = () => {
   const { data, error, isFetching } = useGetContactsQuery();
-
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchGetContact());
-  // }, [dispatch]);
-
-  // const contacts = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.contacts.filter);
   const getVisibleName = () => {
     const normalazedFilter = filter.toLowerCase();
