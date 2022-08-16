@@ -40,7 +40,10 @@ export const GlobalStyles = css`
     max-width: 100%;
     height: auto;
   }
-
+  svg {
+    margin-left: auto;
+    margin-right: auto;
+  }
   button {
     padding: 0;
     border: none;

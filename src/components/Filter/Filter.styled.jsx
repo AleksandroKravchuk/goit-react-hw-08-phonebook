@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Label = styled.label`
+  width: 100%;
   font-size: ${props => props.theme.fontSizes.small};
 `;
 export const FilterInput = styled.input`

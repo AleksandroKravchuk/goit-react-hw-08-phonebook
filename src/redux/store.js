@@ -12,18 +12,20 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { contactApi } from './operations';
+import { userApi } from './auth/auth-operations';
 import reducers from './reducer';
 
 const contactsPersistConfig = {
   key: 'contacts',
   storage,
-  // blacklist: ['filter'],
+  blacklist: ['filter'],
 };
 
 export const store = configureStore({
   reducer: {
     contacts: persistReducer(contactsPersistConfig, reducers),
     [contactApi.reducerPath]: contactApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
   },
   // { contacts: persistReducer(contactsPersistConfig, reducers) },
 
@@ -34,6 +36,7 @@ export const store = configureStore({
       },
     }),
     contactApi.middleware,
+    userApi.middleware,
   ],
 });
 export const persistor = persistStore(store);

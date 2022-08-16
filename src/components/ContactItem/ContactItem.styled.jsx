@@ -26,7 +26,7 @@ export const ButtonDelete = styled.button`
   height: ${props => props.theme.spacing.step * 5}px;
   border-radius: ${props => props.theme.spacing.step}px;
   right: ${props => props.theme.spacing.step}px;
-  top: ${props => props.theme.spacing.step}px;
+  top: ${props => props.theme.spacing.step * 2}px;
   position: absolute;
   cursor: pointer;
   border: none;
