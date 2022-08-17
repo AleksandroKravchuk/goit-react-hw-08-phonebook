@@ -4,6 +4,9 @@ export const FormRegister = styled.form`
   background-color: ${props => props.theme.colors.dark};
   width: 500px;
   padding: 20px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const FormBlock = styled.div``;

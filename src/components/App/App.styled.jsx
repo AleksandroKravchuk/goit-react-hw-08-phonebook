@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Section = styled.section`
+
   padding-top: ${props => props.theme.spacing.step * 5}px;
   padding-bottom: ${props => props.theme.spacing.step * 5}px;
 

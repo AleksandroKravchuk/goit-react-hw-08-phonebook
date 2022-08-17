@@ -5,6 +5,8 @@ import { ContactsList, ContactsItem } from './Contacts.styled';
 import ContactName from 'components/ContactItem/ContaciItem';
 import { useGetContactsQuery } from 'redux/operations';
 import { Loader } from 'components/Loader/Loader';
+import Section from 'components/Section/Section';
+import Filter from 'components/Filter/Filter';
 
 const Contacts = () => {
   const { data, error, isFetching } = useGetContactsQuery();
@@ -19,16 +21,19 @@ const Contacts = () => {
       );
   };
   return (
-    <ContactsList>
-      {isFetching && <Loader />}
-      {getVisibleName() &&
-        getVisibleName().map(item => (
-          <ContactsItem key={item.id}>
-            <ContactName name={item.name} tel={item.phone} id={item.id} />
-          </ContactsItem>
-        ))}
-      {error && Notify.failure('Sorry request failed')}
-    </ContactsList>
+    <Section title={'Contacts'}>
+      <Filter />
+      <ContactsList>
+        {isFetching && <Loader />}
+        {getVisibleName() &&
+          getVisibleName().map(item => (
+            <ContactsItem key={item.id}>
+              <ContactName name={item.name} tel={item.phone} id={item.id} />
+            </ContactsItem>
+          ))}
+        {error && Notify.failure('Sorry request failed')}
+      </ContactsList>
+    </Section>
   );
 };
 

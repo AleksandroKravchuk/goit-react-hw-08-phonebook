@@ -3,7 +3,9 @@ import styled from '@emotion/styled';
 export const SectionWrap = styled.section`
   text-align: start;
   padding: ${props => props.theme.spacing.step * 5}px;
-  width: 400px;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
 `;
 export const Heading = styled.h2`

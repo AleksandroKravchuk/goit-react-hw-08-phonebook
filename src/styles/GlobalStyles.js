@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { theme } from 'styles/theme';
+import phoneBook from '../images/phoneBook.jpg';
 
 export const GlobalStyles = css`
   html {
@@ -12,7 +13,10 @@ export const GlobalStyles = css`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
       'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
       'Helvetica Neue', sans-serif;
-    background: ${theme.colors.mainBackground};
+    background-image: url(${phoneBook});
+    background-position: center;
+    background-size: cover;
+    // background: ${theme.colors.mainBackground};
     min-height: 100vh;
 
     font-style: normal;
@@ -40,10 +44,7 @@ export const GlobalStyles = css`
     max-width: 100%;
     height: auto;
   }
-  svg {
-    margin-left: auto;
-    margin-right: auto;
-  }
+
   button {
     padding: 0;
     border: none;
@@ -61,5 +62,9 @@ export const GlobalStyles = css`
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
+  }
+  .button__exit {
+    margin-left: auto;
+    margin-right: auto;
   }
 `;

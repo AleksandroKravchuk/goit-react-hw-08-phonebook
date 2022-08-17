@@ -3,7 +3,10 @@ import styled from '@emotion/styled';
 export const FormName = styled.form`
   background-color: ${props => props.theme.colors.dark};
   width: 100%;
-  height: 220px;
+  height: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
 `;
 export const InputName = styled.input`
   background-color: #e8e3e3;
@@ -15,7 +18,7 @@ export const InputName = styled.input`
 `;
 export const Label = styled.label`
   width: 100%;
-  font-size: ${props => props.theme.fontSizes.medium};
+  font-size: ${props => props.theme.fontSizes.large};
   color: yellowgreen;
   transform: translateX();
 `;
@@ -24,9 +27,9 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: ${props => props.theme.fontSizes.small};
-  width: ${props => props.theme.spacing.step * 23}px;
-  height: ${props => props.theme.spacing.step * 6}px;
+  font-size: ${props => props.theme.fontSizes.medium};
+  width: ${props => props.theme.spacing.step * 30}px;
+  height: ${props => props.theme.spacing.step * 10}px;
   color: ${props => props.theme.colors.white};
   background-color: ${props => props.theme.colors.primary};
   margin-left: 50%;

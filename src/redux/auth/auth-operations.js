@@ -1,21 +1,30 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const userApi = createApi({
-  reducerPath: 'userApi',
+  reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://62ef7097f5521ecad582887f.mockapi.io/',
+    baseUrl: 'https://connections-api.herokuapp.com',
+    // baseUrl: 'https://62ef7097f5521ecad582887f.mockapi.io/',
   }),
   tagTypes: ['User'],
   endpoints: builder => ({
-    getUser: builder.query({
-      query: () => '/users/',
-      providesTags: ['User'],
-    }),
+    // getUser: builder.query({
+    //   query: () => '/users/current',
+    //   providesTags: ['User'],
+    // }),
     addUser: builder.mutation({
       query: newUser => ({
-        url: '/users/',
+        url: '/users/signup',
         method: 'POST',
         body: newUser,
+      }),
+      invalidatesTags: [{ type: 'User' }],
+    }),
+    loginUser: builder.mutation({
+      query: logUser => ({
+        url: '/users/login',
+        method: 'POST',
+        body: logUser,
       }),
       invalidatesTags: [{ type: 'User' }],
     }),
@@ -30,7 +39,8 @@ export const userApi = createApi({
 });
 
 export const {
-  useGetUserQuery,
+  // useGetUserQuery,
   // useDeleteContactMutation,
+  useLoginUserMutation,
   useAddUserMutation,
 } = userApi;
