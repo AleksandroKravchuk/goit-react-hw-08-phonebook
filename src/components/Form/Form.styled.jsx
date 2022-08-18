@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+// import { theme } from 'styles/theme';
 
 export const FormName = styled.form`
   background-color: ${props => props.theme.colors.dark};
@@ -43,3 +44,6 @@ export const Button = styled.button`
     background-color: bisque;
   }
 `;
+// export const Body = styled.body`
+//   background: ${theme.colors.mainBackground};
+// `;

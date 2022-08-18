@@ -8,25 +8,15 @@ import {
   // FormButtonExit,
   FormButtonSubmit,
 } from './UserForm.styled';
-import {
-  useAddUserMutation,
-  // useGetUserQuery,
-} from 'redux/auth/auth-operations';
+import { useAddUserMutation } from 'redux/auth/auth-operations';
 // import { AiOutlineClose } from 'react-icons/ai';
 import { Container } from 'components/App/App.styled';
-import { useDispatch } from 'react-redux';
-import { getDataRegister } from 'redux/auth/auth-slice';
 
 export const UserForm = ({ onClose }) => {
-  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [addNewUser, result] = useAddUserMutation();
-  const dataRegister = result.data;
-  if (result.data) {
-    dispatch(getDataRegister(dataRegister));
-  }
+  const [addNewUser] = useAddUserMutation();
 
   const hendelChange = ({ target: { name, value } }) => {
     switch (name) {

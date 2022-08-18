@@ -13,10 +13,10 @@ export const GlobalStyles = css`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
       'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
       'Helvetica Neue', sans-serif;
-    background-image: url(${phoneBook});
+    /* background-image: url(${phoneBook});
     background-position: center;
-    background-size: cover;
-    // background: ${theme.colors.mainBackground};
+    background-size: cover; */
+    background: ${theme.colors.mainBackground};
     min-height: 100vh;
 
     font-style: normal;

@@ -4,7 +4,15 @@ export const userApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://connections-api.herokuapp.com',
-    // baseUrl: 'https://62ef7097f5521ecad582887f.mockapi.io/',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().authSlice.token;
+      console.log(token);
+      // If we have a token set in state, let's assume that we should be passing it.
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: ['User'],
   endpoints: builder => ({
@@ -28,13 +36,13 @@ export const userApi = createApi({
       }),
       invalidatesTags: [{ type: 'User' }],
     }),
-    // deleteContact: builder.mutation({
-    //   query: id => ({
-    //     url: `/contacts/${id}`,
-    //     method: 'DELETE',
-    //   }),
-    //   invalidatesTags: [{ type: 'Contacts' }],
-    // }),
+    logOutUser: builder.mutation({
+      query: () => ({
+        url: '/users/logout',
+        method: 'POST',
+      }),
+      invalidatesTags: [{ type: 'User' }],
+    }),
   }),
 });
 
@@ -43,4 +51,6 @@ export const {
   // useDeleteContactMutation,
   useLoginUserMutation,
   useAddUserMutation,
+  useLogOutUserMutation,
 } = userApi;
+// Authorization

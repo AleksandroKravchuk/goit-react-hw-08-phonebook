@@ -12,15 +12,12 @@ import {
   //   useGetUserQuery,
 } from 'redux/auth/auth-operations';
 import { Container } from 'components/App/App.styled';
-import { useSelector } from 'react-redux';
 
 export const UserLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [addLoginUser] = useLoginUserMutation();
   //   const { data } = useGetUserQuery();
-  const addNewUser = useSelector(state => state.authSlice);
-  console.log(addNewUser);
 
   const hendelChange = ({ target: { name, value } }) => {
     switch (name) {

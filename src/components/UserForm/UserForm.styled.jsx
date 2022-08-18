@@ -4,9 +4,13 @@ export const FormRegister = styled.form`
   background-color: ${props => props.theme.colors.dark};
   width: 500px;
   padding: 20px;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-top: 20px; */
+  /* margin-left: auto;
+  margin-right: auto; */
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const FormBlock = styled.div``;

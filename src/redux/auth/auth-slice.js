@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { useAddUserMutation } from './auth-operations';
-import { createAction } from '@reduxjs/toolkit';
-
-export const getDataRegister = createAction('get/register');
+import { userApi } from './auth-operations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -13,20 +10,29 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: {
-    [getDataRegister]: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoading = true;
-    },
-    // [useAddUserMutation](state) {
-    //   // state.user = action.payload.user;
-    //   // state.token = action.payload.token;
-    //   state.isLoading = true;
-    // },
+  extraReducers: builder => {
+    builder.addMatcher(
+      userApi.endpoints.addUser.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
+        state.isLoading = true;
+      }
+    );
+    builder.addMatcher(
+      userApi.endpoints.loginUser.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
+        state.isLoading = true;
+      }
+    );
+    builder.addMatcher(userApi.endpoints.logOutUser.matchFulfilled, state => {
+      state.user = { name: null, email: null };
+      state.token = null;
+      state.isLoading = false;
+    });
   },
 });
-// const filter = createReducer('', {
-//   [changeFilter]: (_, { payload }) => payload,
-// });
+
 export default authSlice.reducer;

@@ -96,8 +96,8 @@ export const Form = () => {
             {isLoading ? <LoaderButton /> : 'Add contact'}
           </Button>
         </FormName>
+        <Contacts />
       </Section>
-      <Contacts />
     </Container>
   );
 };

@@ -5,7 +5,8 @@ import { ContactsList, ContactsItem } from './Contacts.styled';
 import ContactName from 'components/ContactItem/ContaciItem';
 import { useGetContactsQuery } from 'redux/operations';
 import { Loader } from 'components/Loader/Loader';
-import Section from 'components/Section/Section';
+// import Section from 'components/Section/Section';
+import { Heading } from 'components/Section/Section.styled';
 import Filter from 'components/Filter/Filter';
 
 const Contacts = () => {
@@ -21,7 +22,9 @@ const Contacts = () => {
       );
   };
   return (
-    <Section title={'Contacts'}>
+    // <Section title={'Contacts'}>
+    <>
+      <Heading>Contacts</Heading>
       <Filter />
       <ContactsList>
         {isFetching && <Loader />}
@@ -33,7 +36,8 @@ const Contacts = () => {
           ))}
         {error && Notify.failure('Sorry request failed')}
       </ContactsList>
-    </Section>
+    </>
+    // </Section>
   );
 };
 
