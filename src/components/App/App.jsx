@@ -3,10 +3,14 @@ import { Routes, Route } from 'react-router-dom';
 import { Form } from '../Form/Form';
 // import { Modal } from 'components/Modal/Modal-form';
 import { UserForm } from 'components/UserForm/UserForm';
+import { useSelector } from 'react-redux';
 import { UserLogin } from 'components/UserForm/UserLogin';
 import { Header } from 'components/Header/Header';
+import Home from 'components/Home/Home';
 
 const App = () => {
+  const isUserLogin = useSelector(state => state.authSlice.isLoading);
+
   // const [showModal, setShowModal] = useState(false);
 
   // const toggleModal = evt => {
@@ -25,7 +29,9 @@ const App = () => {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Form />} />
+        <Route path="/" element={<Home />} />
+        {isUserLogin && <Route path="/contacts" element={<Form />} />}
+
         <Route path="/register" element={<UserForm />} />
         <Route path="/login" element={<UserLogin />} />
       </Routes>

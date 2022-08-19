@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { FormName, InputName, Label, Button } from './Form.styled';
-import { useAddContactMutation, useGetContactsQuery } from 'redux/operations';
+import {
+  useAddContactMutation,
+  useGetContactsQuery,
+} from 'redux/auth/auth-operations';
 import { LoaderButton } from 'components/Loader/Loader';
 import Section from 'components/Section/Section';
 import { Container } from 'components/App/App.styled';
@@ -29,7 +32,7 @@ export const Form = () => {
   const addName = () => {
     const nameItem = {
       name,
-      phone: number,
+      number,
     };
     if (!data) {
       return;

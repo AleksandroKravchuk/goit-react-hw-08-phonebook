@@ -84,9 +84,7 @@ export const UserLogin = () => {
             placeholder="name@example.com"
             onChange={hendelChange}
           />
-          <FormLabel htmlFor="floatingInput">
-            Username or email address
-          </FormLabel>
+          <FormLabel htmlFor="floatingInput">Email address</FormLabel>
         </FormBlock>
         <FormBlock className="form-floating">
           <FormInput

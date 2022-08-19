@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Container } from 'components/App/App.styled';
 import { FaWhatsapp, FaGrinAlt } from 'react-icons/fa';
 import { useLogOutUserMutation } from 'redux/auth/auth-operations';
+import { useNavigate } from 'react-router-dom';
 // import authSelectors from 'redux/auth/auth-selectors';
 import {
   HeaderWrapper,
@@ -22,7 +23,13 @@ export const Header = () => {
   const userName = useSelector(state => state.authSlice.user.name);
   const isUserLogin = useSelector(state => state.authSlice.isLoading);
   const [logOut] = useLogOutUserMutation();
+  // const { data } = useGetContactsQuery();
+  const navigate = useNavigate();
+  const userExit = () => {
+    logOut();
 
+    navigate('/', { replace: true });
+  };
   return (
     <>
       <NavBar>
@@ -33,11 +40,17 @@ export const Header = () => {
               <LinkWrapper>
                 {!isUserLogin ? (
                   <>
+                    <NavLinkStyled to="/">Home</NavLinkStyled>
                     <NavLinkStyled to="/register">Sign Up</NavLinkStyled>
                     <NavLinkStyled to="/login">Login</NavLinkStyled>
                   </>
                 ) : (
-                  <NavButtonStyled onClick={()=>logOut()}>LogOut</NavButtonStyled>
+                  <>
+                    <NavLinkStyled to="/contacts">Contacts</NavLinkStyled>
+                    <NavButtonStyled onClick={() => userExit()}>
+                      LogOut
+                    </NavButtonStyled>
+                  </>
                 )}
               </LinkWrapper>
             </HeaderBlock>

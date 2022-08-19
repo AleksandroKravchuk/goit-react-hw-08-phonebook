@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ContactsText, Tel, ButtonDelete } from './ContactItem.styled';
-import { useDeleteContactMutation } from 'redux/operations';
+import { useDeleteContactMutation } from 'redux/auth/auth-operations';
 import { LoaderButton } from 'components/Loader/Loader';
 
 const ContactName = ({ name, tel, id }) => {
