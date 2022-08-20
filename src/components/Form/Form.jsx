@@ -42,7 +42,7 @@ export const Form = () => {
         return item.name.toLowerCase() === normalizedName;
       });
       const chekedTel = data.find(item => {
-        return item.phone === number;
+        return item.number === number;
       });
 
       if (!chekedName & !chekedTel) {

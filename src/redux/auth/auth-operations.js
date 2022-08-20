@@ -5,11 +5,14 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://connections-api.herokuapp.com',
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().authSlice.token;
+      const token = getState().auth.token;
       // If we have a token set in state, let's assume that we should be passing it.
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
+      // if (token === null) {
+      //   return;
+      // }
       return headers;
     },
   }),
@@ -37,6 +40,17 @@ export const userApi = createApi({
         method: 'POST',
       }),
       invalidatesTags: [{ type: 'User' }],
+    }),
+    currentUser: builder.query({
+      query: () => '/users/current',
+      providesTags: ['User'],
+      // async onQueryStarted(_, { getState }) {
+      //   const isToken = getState().auth.token;
+      //   console.log(isToken);
+
+      //   if (isToken !== null) {
+      //   }
+      // },
     }),
     getContacts: builder.query({
       query: () => '/contacts',
@@ -71,6 +85,7 @@ export const {
   useLoginUserMutation,
   useAddUserMutation,
   useLogOutUserMutation,
+  useCurrentUserQuery,
   useGetContactsQuery,
   useDeleteContactMutation,
   useAddContactMutation,

@@ -11,8 +11,8 @@ import Filter from 'components/Filter/Filter';
 
 const Contacts = () => {
   const { data, error, isFetching } = useGetContactsQuery();
-  const filter = useSelector(state => state.contacts.filter);
-  const isUserLogin = useSelector(state => state.authSlice.isLoading);
+  const filter = useSelector(state => state.filter);
+  const isUserLogin = useSelector(state => state.auth.isLoading);
   if (isUserLogin) {
   }
   const getVisibleName = () => {

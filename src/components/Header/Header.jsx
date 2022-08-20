@@ -20,8 +20,8 @@ import {
 export const Header = () => {
   // console.log(authSelectors.getIsLoggedIn());
   const theme = useTheme();
-  const userName = useSelector(state => state.authSlice.user.name);
-  const isUserLogin = useSelector(state => state.authSlice.isLoading);
+  const userName = useSelector(state => state.auth.user.name);
+  const isUserLogin = useSelector(state => state.auth.isLoading);
   const [logOut] = useLogOutUserMutation();
   // const { data } = useGetContactsQuery();
   const navigate = useNavigate();

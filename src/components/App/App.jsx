@@ -1,30 +1,23 @@
 import { Routes, Route } from 'react-router-dom';
-// import { useState } from 'react';
+// import { useEffect } from 'react';
 import { Form } from '../Form/Form';
-// import { Modal } from 'components/Modal/Modal-form';
 import { UserForm } from 'components/UserForm/UserForm';
 import { useSelector } from 'react-redux';
+import { useCurrentUserQuery } from 'redux/auth/auth-operations';
 import { UserLogin } from 'components/UserForm/UserLogin';
 import { Header } from 'components/Header/Header';
 import Home from 'components/Home/Home';
+// import { skipToken } from '@reduxjs/toolkit/dist/query';
 
-const App = () => {
-  const isUserLogin = useSelector(state => state.authSlice.isLoading);
+const App = ({ name = 'User', skip = true }) => {
+  const isUserLogin = useSelector(state => state.auth.isLoading);
+  const isToken = useSelector(state => state.auth.token);
 
-  // const [showModal, setShowModal] = useState(false);
+  if (isToken !== null) {
+    skip = false;
+  }
+  useCurrentUserQuery(name, { skip });
 
-  // const toggleModal = evt => {
-  //   setShowModal(!showModal);
-  //   // if (!showModal) {
-  //   //   const itemId = evt.currentTarget.id;
-  //   //   // eslint-disable-next-line array-callback-return
-  //   //   foto.map(item => {
-  //   //     if (item.id === Number(itemId)) {
-  //   //       setfotoModal(item.largeImageURL);
-  //   //     }
-  //   //   });
-  //   // }
-  // };
   return (
     <>
       <Header />
@@ -35,13 +28,6 @@ const App = () => {
         <Route path="/register" element={<UserForm />} />
         <Route path="/login" element={<UserLogin />} />
       </Routes>
-
-      {/* {showModal && (
-        <Modal onClose={toggleModal}>
-          <UserForm onClose={toggleModal} />
-        </Modal>
-      )} */}
-      {/* <button onClick={toggleModal}>SignUp</button> */}
     </>
   );
 };
