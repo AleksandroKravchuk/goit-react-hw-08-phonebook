@@ -38,9 +38,9 @@ export const Header = () => {
             <HeaderBlock>
               <FaWhatsapp size="40px" color={theme.colors.light} />
               <LinkWrapper>
+                <NavLinkStyled to="/">Home</NavLinkStyled>
                 {!isUserLogin ? (
                   <>
-                    <NavLinkStyled to="/">Home</NavLinkStyled>
                     <NavLinkStyled to="/register">Sign Up</NavLinkStyled>
                     <NavLinkStyled to="/login">Login</NavLinkStyled>
                   </>
