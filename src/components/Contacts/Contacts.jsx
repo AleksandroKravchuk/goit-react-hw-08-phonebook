@@ -25,7 +25,6 @@ const Contacts = () => {
       );
   };
   return (
-    // <Section title={'Contacts'}>
     <>
       <Heading>Contacts</Heading>
       <Filter />
@@ -40,7 +39,6 @@ const Contacts = () => {
         {error && Notify.failure('Sorry request failed')}
       </ContactsList>
     </>
-    // </Section>
   );
 };
 

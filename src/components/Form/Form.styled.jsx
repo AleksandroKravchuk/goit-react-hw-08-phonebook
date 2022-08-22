@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-// import { theme } from 'styles/theme';
 
 export const FormName = styled.form`
   background-color: ${props => props.theme.colors.dark};
@@ -7,7 +6,10 @@ export const FormName = styled.form`
   height: 280px;
   margin-left: auto;
   margin-right: auto;
-  padding: 25px;
+  padding: 5px;
+  @media (min-width: ${props => props.theme.breakpoints.s}) {
+    padding: 25px;
+  }
 `;
 export const InputName = styled.input`
   background-color: #e8e3e3;
@@ -44,6 +46,4 @@ export const Button = styled.button`
     background-color: bisque;
   }
 `;
-// export const Body = styled.body`
-//   background: ${theme.colors.mainBackground};
-// `;
+

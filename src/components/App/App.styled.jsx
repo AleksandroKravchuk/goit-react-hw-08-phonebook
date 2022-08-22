@@ -17,8 +17,8 @@ export const Section = styled.section`
 export const Container = styled.div`
   width: 100%;
 
-  padding-left: ${props => props.theme.spacing.step * 5}px;
-  padding-right: ${props => props.theme.spacing.step * 5}px;
+  padding-left: ${props => props.theme.spacing.step}px;
+  padding-right: ${props => props.theme.spacing.step}px;
 
   margin-left: auto;
   margin-right: auto;
@@ -28,6 +28,8 @@ export const Container = styled.div`
   }
   @media (min-width: ${props => props.theme.breakpoints.m}) {
     width: ${props => props.theme.breakpoints.m};
+    padding-left: ${props => props.theme.spacing.step * 5}px;
+    padding-right: ${props => props.theme.spacing.step * 5}px;
   }
   @media (min-width: ${props => props.theme.breakpoints.l}) {
     width: ${props => props.theme.breakpoints.l};

@@ -27,7 +27,7 @@ export const HeaderWrapper = styled.div`
 export const NavLinkStyled = styled(NavLink)`
   color: ${props => props.theme.colors.light};
   font-size: ${props => props.theme.fontSizes.small};
-  font-weight: 500;
+  font-weight: 400;
   text-transform: uppercase;
   transition-property: color, background-color, transform;
   transition-duration: 0.2s;
@@ -61,7 +61,7 @@ export const NavLinkStyled = styled(NavLink)`
 export const NavButtonStyled = styled.button`
   color: ${props => props.theme.colors.light};
   font-size: ${props => props.theme.fontSizes.small};
-  font-weight: 500;
+  font-weight: 400;
   cursor: pointer;
   text-transform: uppercase;
   transition-property: color, background-color, transform;
@@ -71,6 +71,10 @@ export const NavButtonStyled = styled.button`
   @media (min-width: ${props => props.theme.breakpoints.s}) {
     font-size: ${props => props.theme.fontSizes.small};
     font-weight: 500;
+    &:hover,
+    &:focus {
+      padding: 6px 12px;
+    }
   }
   @media (min-width: ${props => props.theme.breakpoints.m}) {
     font-size: ${props => props.theme.fontSizes.medium};
@@ -83,7 +87,7 @@ export const NavButtonStyled = styled.button`
   &:focus {
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.accent};
-    padding: 6px 12px;
+    padding: 3px 6px;
     border-radius: 4px;
     transform: scale(1);
   }
@@ -91,16 +95,19 @@ export const NavButtonStyled = styled.button`
 export const LinkWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: ${props => props.theme.spacing.step * 5}px;
+  gap: ${props => props.theme.spacing.step * 2}px;
   margin-left: ${props => props.theme.spacing.step * 2}px;
   @media (min-width: ${props => props.theme.breakpoints.s}) {
+    gap: ${props => props.theme.spacing.step * 5}px;
     margin-left: ${props => props.theme.spacing.step * 7}px;
   }
 `;
 export const UserName = styled.p`
   color: ${props => props.theme.colors.light};
   font-size: ${props => props.theme.fontSizes.small};
-  font-weight: 500;
+  font-weight: 400;
+  text-align: center;
+  margin-left: 5px;
   margin-bottom: 0px;
   @media (min-width: ${props => props.theme.breakpoints.s}) {
     font-size: ${props => props.theme.fontSizes.medium};
