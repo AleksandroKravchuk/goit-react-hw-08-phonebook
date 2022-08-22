@@ -27,7 +27,6 @@ export const Header = () => {
   const navigate = useNavigate();
   const userExit = () => {
     logOut();
-
     navigate('/', { replace: true });
   };
   return (

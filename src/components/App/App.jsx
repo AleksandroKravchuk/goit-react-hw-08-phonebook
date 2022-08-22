@@ -17,10 +17,11 @@ import { UserLogin } from 'components/UserForm/UserLogin';
 // const UserForm = lazy(() => import('../UserForm/UserForm'));
 // const UserLogin = lazy(() => import('../UserForm/UserLogin'));
 
-const App = ({ name = 'User', skip = true }) => {
+const App = ({ name = 'auth', skip = true }) => {
   const isUserLogin = useSelector(state => state.auth.isLoading);
   const isToken = useSelector(state => state.auth.token);
-
+  // const isRefreshing = useSelector(state => state.auth.isFetchingCurrent);
+  console.log(isToken);
   if (isToken !== null) {
     skip = false;
   }
@@ -28,8 +29,10 @@ const App = ({ name = 'User', skip = true }) => {
 
   return (
     // <Suspense fallback={<Loader />}>
+    // !isRefreshing && (
     <>
       <Header />
+
       <Routes>
         <Route path="/" element={<Home />} />
         {isUserLogin ? (
@@ -45,11 +48,9 @@ const App = ({ name = 'User', skip = true }) => {
             <Route path="/contacts" element={<UserLogin />} />
           </>
         )}
-        {/* <PrivateRoute path="/contacts">
-          <Form />
-        </PrivateRoute> */}
       </Routes>
     </>
+    // )
     // </Suspense>
   );
 };

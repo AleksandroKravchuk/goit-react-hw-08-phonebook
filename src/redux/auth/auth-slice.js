@@ -5,6 +5,7 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoading: false,
+  isFetchingCurrent: true,
 };
 
 const authSlice = createSlice({
@@ -32,13 +33,20 @@ const authSlice = createSlice({
       state.token = null;
       state.isLoading = false;
     });
+    builder.addMatcher(userApi.endpoints.currentUser.matchPending, state => {
+      state.isFetchingCurrent = false;
+    });
     builder.addMatcher(
       userApi.endpoints.currentUser.matchFulfilled,
       (state, { payload }) => {
         state.user = payload;
         state.isLoading = true;
+        state.isFetchingCurrent = true;
       }
     );
+    builder.addMatcher(userApi.endpoints.currentUser.matchRejected, state => {
+      state.isFetchingCurrent = true;
+    });
   },
 });
 

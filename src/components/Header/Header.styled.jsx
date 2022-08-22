@@ -26,13 +26,25 @@ export const HeaderWrapper = styled.div`
 
 export const NavLinkStyled = styled(NavLink)`
   color: ${props => props.theme.colors.light};
-  font-size: ${props => props.theme.fontSizes.medium};
-  font-weight: 700;
+  font-size: ${props => props.theme.fontSizes.small};
+  font-weight: 500;
   text-transform: uppercase;
   transition-property: color, background-color, transform;
   transition-duration: 0.2s;
   transition-timing-function: ${props => props.theme.animations.cubicBezier};
   transform: scale(0.9);
+  @media (min-width: ${props => props.theme.breakpoints.s}) {
+    font-size: ${props => props.theme.fontSizes.small};
+    font-weight: 500;
+  }
+  @media (min-width: ${props => props.theme.breakpoints.m}) {
+    font-size: ${props => props.theme.fontSizes.medium};
+    font-weight: 700;
+    &.active {
+      padding: 6px 12px;
+    }
+  }
+
   &:hover,
   &:focus {
     color: ${props => props.theme.colors.white};
@@ -40,7 +52,7 @@ export const NavLinkStyled = styled(NavLink)`
   &.active {
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.accent};
-    padding: 6px 12px;
+    padding: 3px 6px;
     border-radius: 4px;
     transform: scale(1);
     pointer-events: none;
@@ -48,14 +60,25 @@ export const NavLinkStyled = styled(NavLink)`
 `;
 export const NavButtonStyled = styled.button`
   color: ${props => props.theme.colors.light};
-  font-size: ${props => props.theme.fontSizes.medium};
-  font-weight: 700;
+  font-size: ${props => props.theme.fontSizes.small};
+  font-weight: 500;
   cursor: pointer;
   text-transform: uppercase;
   transition-property: color, background-color, transform;
   transition-duration: 0.2s;
   transition-timing-function: ${props => props.theme.animations.cubicBezier};
   transform: scale(0.9);
+  @media (min-width: ${props => props.theme.breakpoints.s}) {
+    font-size: ${props => props.theme.fontSizes.small};
+    font-weight: 500;
+  }
+  @media (min-width: ${props => props.theme.breakpoints.m}) {
+    font-size: ${props => props.theme.fontSizes.medium};
+    font-weight: 700;
+    &.active {
+      padding: 6px 12px;
+    }
+  }
   &:hover,
   &:focus {
     color: ${props => props.theme.colors.white};
@@ -69,16 +92,26 @@ export const LinkWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: ${props => props.theme.spacing.step * 5}px;
-  margin-left: ${props => props.theme.spacing.step * 7}px;
+  margin-left: ${props => props.theme.spacing.step * 2}px;
+  @media (min-width: ${props => props.theme.breakpoints.s}) {
+    margin-left: ${props => props.theme.spacing.step * 7}px;
+  }
 `;
 export const UserName = styled.p`
   color: ${props => props.theme.colors.light};
-  font-size: ${props => props.theme.fontSizes.medium};
-  font-weight: 700;
+  font-size: ${props => props.theme.fontSizes.small};
+  font-weight: 500;
   margin-bottom: 0px;
+  @media (min-width: ${props => props.theme.breakpoints.s}) {
+    font-size: ${props => props.theme.fontSizes.medium};
+    font-weight: 700;
+  }
 `;
 export const UserLogo = styled.span`
-  margin-right: 10px;
+  margin-right: 4px;
+  @media (min-width: ${props => props.theme.breakpoints.s}) {
+    margin-right: 10px;
+  }
 `;
 export const HeaderBlock = styled.div`
   display: flex;
