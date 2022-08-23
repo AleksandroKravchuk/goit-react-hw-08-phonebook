@@ -18,7 +18,6 @@ import {
 } from './Header.styled';
 
 export const Header = () => {
-  // console.log(authSelectors.getIsLoggedIn());
   const theme = useTheme();
   const userName = useSelector(state => state.auth.user.name);
   const isUserLogin = useSelector(state => state.auth.isLoading);
@@ -37,9 +36,9 @@ export const Header = () => {
             <HeaderBlock>
               <FaWhatsapp size="40px" color={theme.colors.light} />
               <LinkWrapper>
-                <NavLinkStyled to="/">Home</NavLinkStyled>
                 {!isUserLogin ? (
                   <>
+                    <NavLinkStyled to="/">Home</NavLinkStyled>
                     <NavLinkStyled to="/register">Sign Up</NavLinkStyled>
                     <NavLinkStyled to="/login">Login</NavLinkStyled>
                   </>

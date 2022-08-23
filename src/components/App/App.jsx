@@ -18,28 +18,30 @@ import { UserLogin } from 'components/UserForm/UserLogin';
 
 const App = () => {
   const isUserLogin = useSelector(state => state.auth.isLoading);
+  const isRefreshing = useSelector(state => state.auth.isFetchingCurrent);
   return (
     // <Suspense fallback={<Loader />}>
-
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {isUserLogin ? (
-          <>
-            <Route path="/contacts" element={<Form />} />
-            <Route path="/register" element={<Form />} />
-            <Route path="/login" element={<Form />} />
-          </>
-        ) : (
-          <>
-            <Route path="/register" element={<UserForm />} />
-            <Route path="/login" element={<UserLogin />} />
-            <Route path="/contacts" element={<UserLogin />} />
-          </>
-        )}
-      </Routes>
-    </>
+    isRefreshing && (
+      <>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {isUserLogin ? (
+            <>
+              <Route path="/contacts" element={<Form />} />
+              <Route path="/register" element={<Form />} />
+              <Route path="/login" element={<Form />} />
+            </>
+          ) : (
+            <>
+              <Route path="/register" element={<UserForm />} />
+              <Route path="/login" element={<UserLogin />} />
+              <Route path="/contacts" element={<UserLogin />} />
+            </>
+          )}
+        </Routes>
+      </>
+    )
 
     // </Suspense>
   );

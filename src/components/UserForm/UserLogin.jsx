@@ -18,7 +18,6 @@ export const UserLogin = ({ nameI = 'User', skip = true }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [addLoginUser] = useLoginUserMutation();
-  const isRefreshing = useSelector(state => state.auth.isFetchingCurrent);
   const isToken = useSelector(state => state.auth.token);
 
   if (isToken !== null) {
@@ -52,42 +51,40 @@ export const UserLogin = ({ nameI = 'User', skip = true }) => {
     setPassword('');
   };
   return (
-    isRefreshing && (
-      <SectionWrap>
-        <Container>
-          <FormRegister onSubmit={hendelSubmit}>
-            <FormBlock className="form-floating mb-3">
-              <FormInput
-                type="email"
-                name="email"
-                required
-                value={email}
-                className="form-control"
-                id="floatingInput"
-                placeholder="name@example.com"
-                onChange={hendelChange}
-              />
-              <FormLabel htmlFor="floatingInput">Email address</FormLabel>
-            </FormBlock>
-            <FormBlock className="form-floating">
-              <FormInput
-                type="password"
-                name="password"
-                required
-                value={password}
-                className="form-control"
-                id="floatingPassword"
-                placeholder="Password"
-                onChange={hendelChange}
-              />
-              <FormLabel htmlFor="floatingPassword">Password</FormLabel>
-            </FormBlock>
-            <FormButtonSubmit className="btn btn-light">
-              Sign In{' '}
-            </FormButtonSubmit>
-          </FormRegister>
-        </Container>
-      </SectionWrap>
-    )
+    <SectionWrap>
+      <Container>
+        <FormRegister onSubmit={hendelSubmit}>
+          <FormBlock className="form-floating mb-3">
+            <FormInput
+              type="email"
+              name="email"
+              required
+              value={email}
+              className="form-control"
+              id="floatingInput"
+              placeholder="name@example.com"
+              onChange={hendelChange}
+            />
+            <FormLabel htmlFor="floatingInput">Email address</FormLabel>
+          </FormBlock>
+          <FormBlock className="form-floating">
+            <FormInput
+              type="password"
+              name="password"
+              required
+              value={password}
+              className="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+              onChange={hendelChange}
+            />
+            <FormLabel htmlFor="floatingPassword">Password</FormLabel>
+          </FormBlock>
+          <FormButtonSubmit className="btn btn-light">
+            Sign In{' '}
+          </FormButtonSubmit>
+        </FormRegister>
+      </Container>
+    </SectionWrap>
   );
 };

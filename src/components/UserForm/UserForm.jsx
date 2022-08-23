@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   FormRegister,
   FormBlock,
@@ -6,14 +7,24 @@ import {
   FormLabel,
   FormButtonSubmit,
 } from './UserForm.styled';
-import { useAddUserMutation } from 'redux/auth/auth-operations';
+import { useSelector } from 'react-redux';
+import {
+  useAddUserMutation,
+  useCurrentUserQuery,
+} from 'redux/auth/auth-operations';
 import { Container } from 'components/App/App.styled';
 import { SectionWrap } from 'components/Home/Home.styled';
-export const UserForm = ({ onClose }) => {
+export const UserForm = ({ nameI = 'User', skip = true }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [addNewUser] = useAddUserMutation();
+  const [addNewUser, isError] = useAddUserMutation();
+  const isToken = useSelector(state => state.auth.token);
+
+  if (isToken !== null) {
+    skip = false;
+  }
+  useCurrentUserQuery(nameI, { skip });
 
   const hendelChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -39,11 +50,20 @@ export const UserForm = ({ onClose }) => {
     addNewUser(newUser);
   };
   const hendelSubmit = evt => {
+    console.log(isError);
+    // const signError = error.status;
     evt.preventDefault();
     addUser();
     setName('');
     setEmail('');
     setPassword('');
+    // console.log(errors);
+    // // const signError = error.status;
+    // console.log(error);
+
+    // if (signError === 'uninitialized') {
+    //   return Notify.failure('Please enter your data');
+    // }
   };
 
   return (
