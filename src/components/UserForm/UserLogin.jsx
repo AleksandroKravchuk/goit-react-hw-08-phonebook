@@ -17,7 +17,7 @@ import { SectionWrap } from 'components/Home/Home.styled';
 export const UserLogin = ({ nameI = 'User', skip = true }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [addLoginUser] = useLoginUserMutation();
+  const [addLoginUser, error] = useLoginUserMutation();
   const isToken = useSelector(state => state.auth.token);
 
   if (isToken !== null) {
@@ -45,7 +45,9 @@ export const UserLogin = ({ nameI = 'User', skip = true }) => {
     addLoginUser(newUser);
   };
   const hendelSubmit = evt => {
+    const isError = error;
     evt.preventDefault();
+    console.log(isError);
     loginUser();
     setEmail('');
     setPassword('');
