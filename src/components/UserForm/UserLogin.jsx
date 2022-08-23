@@ -41,7 +41,7 @@ export const UserLogin = () => {
     setEmail('');
     setPassword('');
   };
-
+  console.log(isRefreshing);
   return (
     isRefreshing && (
       <SectionWrap>

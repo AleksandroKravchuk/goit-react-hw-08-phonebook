@@ -21,7 +21,7 @@ const App = ({ name = 'auth', skip = true }) => {
   const isUserLogin = useSelector(state => state.auth.isLoading);
   const isToken = useSelector(state => state.auth.token);
   // const isRefreshing = useSelector(state => state.auth.isFetchingCurrent);
-  console.log(isToken);
+  // console.log(isToken);
   if (isToken !== null) {
     skip = false;
   }
@@ -29,7 +29,7 @@ const App = ({ name = 'auth', skip = true }) => {
 
   return (
     // <Suspense fallback={<Loader />}>
-    // !isRefreshing && (
+
     <>
       <Header />
 
@@ -50,7 +50,7 @@ const App = ({ name = 'auth', skip = true }) => {
         )}
       </Routes>
     </>
-    // )
+
     // </Suspense>
   );
 };
