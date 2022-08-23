@@ -41,13 +41,6 @@ export const userApi = createApi({
     currentUser: builder.query({
       query: () => '/users/current',
       providesTags: ['User'],
-      // async onQueryStarted(_, { getState }) {
-      //   const isToken = getState().auth.token;
-      //   console.log(isToken);
-
-      //   if (isToken !== null) {
-      //   }
-      // },
     }),
     getContacts: builder.query({
       query: () => '/contacts',
