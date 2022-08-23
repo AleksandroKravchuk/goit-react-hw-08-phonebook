@@ -2,19 +2,27 @@ import styled from '@emotion/styled';
 
 export const ContactsText = styled.p`
   position: relative;
-  font-size: ${props => props.theme.fontSizes.medium};
+  font-size: ${props => props.theme.fontSizes.small};
   color: ${props => props.theme.colors.white};
   text-align: ${({ textAlign }) => (!textAlign ? 'left' : textAlign)};
   padding: ${props => props.theme.spacing.step}px;
+  @media (min-width: ${props => props.theme.breakpoints.m}) {
+    font-size: ${props => props.theme.fontSizes.medium};
+  }
 `;
 export const Tel = styled.span`
   position: absolute;
-  left: 55%;
-  top: 20%;
-  font-size: ${props => props.theme.fontSizes.small};
+  left: 50%;
+  top: 14%;
+  font-size: 12px;
   margin-left: ${props => props.theme.spacing.step}px;
   color: ${props => props.theme.colors.light};
   margin-left: auto;
+  @media (min-width: ${props => props.theme.breakpoints.m}) {
+    top: 20%;
+    left: 44%;
+    font-size: ${props => props.theme.fontSizes.small};
+  }
 `;
 export const ButtonDelete = styled.button`
   display: flex;
@@ -26,7 +34,7 @@ export const ButtonDelete = styled.button`
   height: ${props => props.theme.spacing.step * 5}px;
   border-radius: ${props => props.theme.spacing.step}px;
   right: ${props => props.theme.spacing.step}px;
-  top: ${props => props.theme.spacing.step * 2}px;
+  top: ${props => props.theme.spacing.step}px;
   position: absolute;
   cursor: pointer;
   border: none;
@@ -34,5 +42,8 @@ export const ButtonDelete = styled.button`
   :hover {
     color: ${props => props.theme.colors.dark};
     background-color: bisque;
+  }
+  @media (min-width: ${props => props.theme.breakpoints.m}) {
+    top: ${props => props.theme.spacing.step * 2}px;
   }
 `;

@@ -19,9 +19,11 @@ export const NavBar = styled.header`
 `;
 
 export const HeaderWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @media (min-width: 370px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const NavLinkStyled = styled(NavLink)`
@@ -52,7 +54,7 @@ export const NavLinkStyled = styled(NavLink)`
   &.active {
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.accent};
-    padding: 3px 6px;
+    padding: 2px 3px;
     border-radius: 4px;
     transform: scale(1);
     pointer-events: none;
@@ -103,11 +105,16 @@ export const LinkWrapper = styled.div`
   }
 `;
 export const UserName = styled.p`
+  @media (max-width: 370px) {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
   color: ${props => props.theme.colors.light};
   font-size: ${props => props.theme.fontSizes.small};
   font-weight: 400;
   text-align: center;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   margin-bottom: 0px;
   @media (min-width: ${props => props.theme.breakpoints.s}) {
     font-size: ${props => props.theme.fontSizes.medium};

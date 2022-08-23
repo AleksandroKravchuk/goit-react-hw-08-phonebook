@@ -44,9 +44,9 @@ const authSlice = createSlice({
         state.isFetchingCurrent = true;
       }
     );
-    builder.addMatcher(userApi.endpoints.currentUser.matchRejected, state => {
-      state.isFetchingCurrent = true;
-    });
+    // builder.addMatcher(userApi.endpoints.currentUser.matchRejected, state => {
+    //   state.isFetchingCurrent = true;
+    // });
   },
 });
 

@@ -2,18 +2,19 @@ import styled from '@emotion/styled';
 
 export const SectionWrap = styled.section`
   text-align: start;
-  padding: ${props => props.theme.spacing.step * 1}px;
+  padding: ${props => props.theme.spacing.step}px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
   padding-bottom: 0px;
   padding-top: 100px;
-  @media (max-width: 370px) {
-    width: 90vw;
+  @media (max-width: 369px) {
+    width: 96vw;
   }
-  @media (min-width: ${props => props.theme.breakpoints.m}) {
-    width: 450px;
+  @media (min-width: 370px) {
+    width: 400px;
     padding: ${props => props.theme.spacing.step * 5}px;
+    padding-top: 100px;
   }
 `;
 export const Heading = styled.h2`

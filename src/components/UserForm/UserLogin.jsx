@@ -7,15 +7,25 @@ import {
   FormLabel,
   FormButtonSubmit,
 } from './UserForm.styled';
-import { useLoginUserMutation } from 'redux/auth/auth-operations';
+import {
+  useLoginUserMutation,
+  useCurrentUserQuery,
+} from 'redux/auth/auth-operations';
 import { Container } from 'components/App/App.styled';
 import { SectionWrap } from 'components/Home/Home.styled';
 
-export const UserLogin = () => {
+export const UserLogin = ({ nameI = 'User', skip = true }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [addLoginUser] = useLoginUserMutation();
   const isRefreshing = useSelector(state => state.auth.isFetchingCurrent);
+  const isToken = useSelector(state => state.auth.token);
+
+  if (isToken !== null) {
+    skip = false;
+  }
+  useCurrentUserQuery(nameI, { skip });
+
   const hendelChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'email':
@@ -41,7 +51,6 @@ export const UserLogin = () => {
     setEmail('');
     setPassword('');
   };
-  console.log(isRefreshing);
   return (
     isRefreshing && (
       <SectionWrap>
