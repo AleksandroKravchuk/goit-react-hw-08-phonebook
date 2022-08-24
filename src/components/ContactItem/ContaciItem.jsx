@@ -5,11 +5,11 @@ import { useDeleteContactMutation } from 'redux/auth/auth-operations';
 import { LoaderButton } from 'components/Loader/Loader';
 
 const ContactName = ({ name, tel, id }) => {
-  const [deleteContakt, { isLoading: isDeleting }] = useDeleteContactMutation();
+  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
   return (
     <ContactsText>
       {name}: <Tel>{tel}</Tel>
-      <ButtonDelete onClick={() => deleteContakt(id)} disabled={isDeleting}>
+      <ButtonDelete onClick={() => deleteContact(id)} disabled={isDeleting}>
         {isDeleting ? <LoaderButton /> : 'Delete'}
       </ButtonDelete>
     </ContactsText>

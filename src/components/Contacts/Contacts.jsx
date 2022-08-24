@@ -5,7 +5,6 @@ import { ContactsList, ContactsItem } from './Contacts.styled';
 import ContactName from 'components/ContactItem/ContaciItem';
 import { useGetContactsQuery } from 'redux/auth/auth-operations';
 import { Loader } from 'components/Loader/Loader';
-// import Section from 'components/Section/Section';
 import { Heading } from 'components/Section/Section.styled';
 import Filter from 'components/Filter/Filter';
 
@@ -16,12 +15,12 @@ const Contacts = () => {
   if (isUserLogin) {
   }
   const getVisibleName = () => {
-    const normalazedFilter = filter.toLowerCase();
+    const normalizedFilter = filter.toLowerCase();
     if (!data) {
       return;
     } else
       return data.filter(item =>
-        item.name.toLowerCase().includes(normalazedFilter)
+        item.name.toLowerCase().includes(normalizedFilter)
       );
   };
   return (

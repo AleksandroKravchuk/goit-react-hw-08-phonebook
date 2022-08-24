@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   FormRegister,
   FormBlock,
@@ -19,14 +20,13 @@ export const UserLogin = ({ nameI = 'User', skip = true }) => {
   const [password, setPassword] = useState('');
   const [addLoginUser] = useLoginUserMutation();
   const isToken = useSelector(state => state.auth.token);
-  
 
   if (isToken !== null) {
     skip = false;
   }
   useCurrentUserQuery(nameI, { skip });
 
-  const hendelChange = ({ target: { name, value } }) => {
+  const handelChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'email':
         setEmail(value);
@@ -43,12 +43,14 @@ export const UserLogin = ({ nameI = 'User', skip = true }) => {
       email,
       password,
     };
-    addLoginUser(newUser);
+    addLoginUser(newUser).then(({ error }) => {
+      if (error && error.status === 400) {
+        return Notify.failure('Email or password is incorrect ');
+      }
+    });
   };
-  const hendelSubmit = evt => {
-    // const isError = error;
+  const handelSubmit = evt => {
     evt.preventDefault();
-    // console.log(isError);
     loginUser();
     setEmail('');
     setPassword('');
@@ -56,7 +58,7 @@ export const UserLogin = ({ nameI = 'User', skip = true }) => {
   return (
     <SectionWrap>
       <Container>
-        <FormRegister onSubmit={hendelSubmit}>
+        <FormRegister onSubmit={handelSubmit}>
           <FormBlock className="form-floating mb-3">
             <FormInput
               type="email"
@@ -66,7 +68,7 @@ export const UserLogin = ({ nameI = 'User', skip = true }) => {
               className="form-control"
               id="floatingInput"
               placeholder="name@example.com"
-              onChange={hendelChange}
+              onChange={handelChange}
             />
             <FormLabel htmlFor="floatingInput">Email address</FormLabel>
           </FormBlock>
@@ -79,7 +81,7 @@ export const UserLogin = ({ nameI = 'User', skip = true }) => {
               className="form-control"
               id="floatingPassword"
               placeholder="Password"
-              onChange={hendelChange}
+              onChange={handelChange}
             />
             <FormLabel htmlFor="floatingPassword">Password</FormLabel>
           </FormBlock>

@@ -1,11 +1,9 @@
-import { Outlet } from 'react-router-dom';
 import { useTheme } from '@emotion/react';
 import { useSelector } from 'react-redux';
 import { Container } from 'components/App/App.styled';
 import { FaWhatsapp, FaGrinAlt } from 'react-icons/fa';
 import { useLogOutUserMutation } from 'redux/auth/auth-operations';
 import { useNavigate } from 'react-router-dom';
-// import authSelectors from 'redux/auth/auth-selectors';
 import {
   HeaderWrapper,
   LinkWrapper,
@@ -22,7 +20,6 @@ export const Header = () => {
   const userName = useSelector(state => state.auth.user.name);
   const isUserLogin = useSelector(state => state.auth.isLoading);
   const [logOut] = useLogOutUserMutation();
-  // const { data } = useGetContactsQuery();
   const navigate = useNavigate();
   const userExit = () => {
     logOut();
@@ -63,8 +60,6 @@ export const Header = () => {
           </HeaderWrapper>
         </Container>
       </NavBar>
-
-      <Outlet />
     </>
   );
 };

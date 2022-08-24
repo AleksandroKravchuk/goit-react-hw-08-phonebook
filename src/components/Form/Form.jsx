@@ -38,26 +38,26 @@ export const Form = () => {
       return;
     } else {
       const normalizedName = name.toLowerCase();
-      const chekedName = data.find(item => {
+      const checkedName = data.find(item => {
         return item.name.toLowerCase() === normalizedName;
       });
-      const chekedTel = data.find(item => {
+      const checkedTel = data.find(item => {
         return item.number === number;
       });
 
-      if (!chekedName & !chekedTel) {
+      if (!checkedName & !checkedTel) {
         addContacts(nameItem);
         Notify.success(`${name} added in contacts`);
       }
-      if (chekedName) {
+      if (checkedName) {
         return Notify.failure(`${name} is already in contacts`);
       }
-      if (chekedTel) {
+      if (checkedTel) {
         return Notify.failure(`Number ${number} is already in contacts`);
       }
     }
   };
-  const hendelSubmit = evt => {
+  const handelSubmit = evt => {
     evt.preventDefault();
     if (name === '' || number === '') {
       return;
@@ -70,7 +70,7 @@ export const Form = () => {
   return (
     <Container>
       <Section title={'Phonebook'}>
-        <FormName onSubmit={hendelSubmit}>
+        <FormName onSubmit={handelSubmit}>
           <Label>
             Name
             <InputName

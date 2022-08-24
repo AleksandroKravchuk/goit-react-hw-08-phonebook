@@ -4,7 +4,6 @@ export const Label = styled.label`
   width: 100%;
   font-weight: 700;
   color: ${props => props.theme.colors.primary};
-  /* color: white; */
   font-size: ${props => props.theme.fontSizes.small};
 `;
 export const FilterInput = styled.input`

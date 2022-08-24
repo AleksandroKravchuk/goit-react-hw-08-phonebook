@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   FormRegister,
   FormBlock,
@@ -14,11 +14,12 @@ import {
 } from 'redux/auth/auth-operations';
 import { Container } from 'components/App/App.styled';
 import { SectionWrap } from 'components/Home/Home.styled';
+
 export const UserForm = ({ nameI = 'User', skip = true }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [addNewUser, isError] = useAddUserMutation();
+  const [addNewUser] = useAddUserMutation();
   const isToken = useSelector(state => state.auth.token);
 
   if (isToken !== null) {
@@ -26,7 +27,7 @@ export const UserForm = ({ nameI = 'User', skip = true }) => {
   }
   useCurrentUserQuery(nameI, { skip });
 
-  const hendelChange = ({ target: { name, value } }) => {
+  const handelChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
         setName(value);
@@ -47,29 +48,31 @@ export const UserForm = ({ nameI = 'User', skip = true }) => {
       email,
       password,
     };
-    addNewUser(newUser);
+    addNewUser(newUser).then(({ error }) => {
+      if (error) {
+        const newName = error.data.name;
+        const errorPassword = error.data.message;
+        if (newName && newName === 'MongoError') {
+          return Notify.failure(`A user email  ${email} already exists`);
+        }
+        if (errorPassword) {
+          return Notify.failure(`${errorPassword}`);
+        }
+      }
+    });
   };
-  const hendelSubmit = evt => {
-    console.log(isError);
-    // const signError = error.status;
+  const handelSubmit = evt => {
     evt.preventDefault();
     addUser();
     setName('');
     setEmail('');
     setPassword('');
-    // console.log(errors);
-    // // const signError = error.status;
-    // console.log(error);
-
-    // if (signError === 'uninitialized') {
-    //   return Notify.failure('Please enter your data');
-    // }
   };
 
   return (
     <SectionWrap>
       <Container>
-        <FormRegister onSubmit={hendelSubmit}>
+        <FormRegister onSubmit={handelSubmit}>
           <FormBlock className="form-floating mb-3">
             <FormInput
               type="text"
@@ -79,7 +82,7 @@ export const UserForm = ({ nameI = 'User', skip = true }) => {
               className="form-control"
               id="floatingName"
               placeholder="name@example.com"
-              onChange={hendelChange}
+              onChange={handelChange}
             />
             <FormLabel htmlFor="floatingInput">Name</FormLabel>
           </FormBlock>
@@ -93,7 +96,7 @@ export const UserForm = ({ nameI = 'User', skip = true }) => {
               className="form-control"
               id="floatingInput"
               placeholder="name@example.com"
-              onChange={hendelChange}
+              onChange={handelChange}
             />
             <FormLabel htmlFor="floatingInput">Email address</FormLabel>
           </FormBlock>
@@ -107,7 +110,7 @@ export const UserForm = ({ nameI = 'User', skip = true }) => {
               className="form-control"
               id="floatingPassword"
               placeholder="Password"
-              onChange={hendelChange}
+              onChange={handelChange}
             />
             <FormLabel htmlFor="floatingPassword">Password</FormLabel>
           </FormBlock>
