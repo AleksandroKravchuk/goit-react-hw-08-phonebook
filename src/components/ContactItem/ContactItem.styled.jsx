@@ -20,7 +20,6 @@ export const Tel = styled.span`
   margin-left: auto;
   @media (min-width: ${props => props.theme.breakpoints.m}) {
     top: 20%;
-    left: 44%;
     font-size: ${props => props.theme.fontSizes.small};
   }
 `;
