@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   FormRegister,
@@ -21,7 +22,8 @@ export const UserForm = ({ nameI = 'User', skip = true }) => {
   const [password, setPassword] = useState('');
   const [addNewUser] = useAddUserMutation();
   const isToken = useSelector(state => state.auth.token);
-
+  const navigate = useNavigate();
+  
   if (isToken !== null) {
     skip = false;
   }
@@ -49,6 +51,7 @@ export const UserForm = ({ nameI = 'User', skip = true }) => {
       password,
     };
     addNewUser(newUser).then(({ error }) => {
+      
       if (error) {
         const newName = error.data.name;
         const errorPassword = error.data.message;
@@ -59,6 +62,7 @@ export const UserForm = ({ nameI = 'User', skip = true }) => {
           return Notify.failure(`${errorPassword}`);
         }
       }
+      navigate('/contacts', { replace: true });
     });
   };
   const handelSubmit = evt => {

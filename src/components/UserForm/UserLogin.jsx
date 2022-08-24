@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
@@ -20,6 +21,7 @@ export const UserLogin = ({ nameI = 'User', skip = true }) => {
   const [password, setPassword] = useState('');
   const [addLoginUser] = useLoginUserMutation();
   const isToken = useSelector(state => state.auth.token);
+  const navigate = useNavigate();
 
   if (isToken !== null) {
     skip = false;
@@ -47,6 +49,7 @@ export const UserLogin = ({ nameI = 'User', skip = true }) => {
       if (error && error.status === 400) {
         return Notify.failure('Email or password is incorrect ');
       }
+      navigate('/contacts', { replace: true });
     });
   };
   const handelSubmit = evt => {
