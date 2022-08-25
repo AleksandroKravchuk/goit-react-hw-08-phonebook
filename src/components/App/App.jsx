@@ -28,6 +28,7 @@ const App = () => {
               <Route path="/contacts" element={<UserLogin />} />
             </>
           )}
+          <Route path="*" element={<Home />} />
         </Routes>
       </>
     )
